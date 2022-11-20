@@ -1,0 +1,30 @@
+/* 2.	Accept average marks of five students. Display the highest marks obtained. */
+
+          using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StudentMarks
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] students = new int[5];
+            int heigestMarks=0;
+            for(int i=0; i < students.Length; i++)
+            {
+                Console.Write($"Enter average Marks of {i+1} th students: ");
+                students[i]=int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                if (heigestMarks < students[i])
+                    heigestMarks = students[i];
+            }
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("Heigest Marks of Student is :"+heigestMarks);
+            Console.ReadLine();
+        }
+    }
+}

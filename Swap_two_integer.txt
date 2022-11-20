@@ -1,0 +1,33 @@
+/* 4.	Write a method to swap two integers. The client code should call the method and print the swapped value. */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SwapValue
+{
+    
+    internal class Program
+    {
+        public void swap(ref int a,ref int b)
+        {
+            a = a+b;
+            b = a-b;
+            a = a-b;
+        }
+        static void Main(string[] args)
+        {
+            Program program = new Program();
+            int a = 3;
+            int b = 5;
+            
+            Console.WriteLine("a = " + a + "\nb = " + b);
+            program.swap(ref a,ref b);
+            Console.WriteLine("After Swap Value of a and b "); ;
+            Console.WriteLine("a = " + a + "\nb = " + b);
+            Console.ReadLine();
+        }
+    }
+}

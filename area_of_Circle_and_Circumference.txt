@@ -1,0 +1,32 @@
+/* 5.	Write a single method that calculates the area and circumference of the circle.
+         The area and circumference should be displayed through the client code. */
+
+ using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Circle
+{
+    internal class Program
+    {
+        private const double pi = 3.14;
+        public void Calculate_Area_Circumference(double redius, out double area,out double cum)
+        {
+            area = pi*redius*redius;
+            cum = 2*pi*redius;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter redius of Circle: ");
+            double redius=int.Parse(Console.ReadLine()); 
+            double area,cum;
+            Program program = new Program();
+            program.Calculate_Area_Circumference(redius,out area, out cum);
+            Console.WriteLine("Area of Circle: "+area+"\nCircumference of circle: "+cum);
+            Console.ReadLine();
+        }
+    }
+}
+

@@ -1,0 +1,68 @@
+/* 1.	Write a Simple console Application Calculator with the help of Visual Studio .NET IDE which will perform following operations on two numbers:
+a.	Addition.
+b.	Subtraction.
+c.	Multiplication.
+d.	Division
+Accept input from user and display results on console. Make use of loops, switch case wherever required.
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Calculator
+{
+    internal class Program
+    {
+        public static int Add(int n1,int n2)
+        {
+            return n1 + n2;
+        }
+        public static int Subtract(int n1, int n2)
+        {
+            return n1 - n2;
+        }
+        public static int Multiply(int n1, int n2)
+        {
+            return n1 * n2;
+        }
+        public static int Divide(int n1, int n2)
+        {
+            return n1 / n2;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter first Number : ");
+            int n1 = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Second Number : ");
+            int n2 = int.Parse(Console.ReadLine());
+            while (true)
+            {
+               
+                Console.WriteLine("Enter choice a , b , c , d ,e |\n a for Add() ,b for Subtract() ,c for Multiply() ,d for Divide() ,e for exit(): ");
+                char choice=char.Parse(Console.ReadLine());
+                
+                switch (choice)
+                    {
+                    case 'a':
+                        Console.WriteLine("Addition of two number is : "+Add(n1, n2));
+                        break;
+                    case 'b':
+                        Console.WriteLine("Substraction of two number is : "+Subtract(n1, n2));
+                        break;
+                    case 'c':
+                        Console.WriteLine("Multiplication of two number is : "+Multiply(n1, n2));
+                        break;
+                    case 'd':
+                        Console.WriteLine("Division of two number is : "+Divide(n1, n2));
+                        break;
+                        case'e':
+                        return;
+                }
+            }
+        }
+    }
+}
+
