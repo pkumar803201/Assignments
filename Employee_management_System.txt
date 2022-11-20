@@ -1,0 +1,271 @@
+/* 1)	Develop Employee Management System for Litware Organization. Write a Class Library project LitwareLib.
+a)	Add class Employee with following private members:
+	EmpNo	int
+	EmpName string
+	Salary double
+	HRA	double
+	TA	double
+	DA	double
+	PF	double
+	TDS	double
+	NetSalary double
+	GrossSalary double.
+
+Write methods for accepting EmpNo, EmpName and Salary. HRA, TA, DA, PPF, TDS, NET, GROSS should be calculated automatically. Follow the table for calculations.
+Salary	HRA % of Salary	TA % of Salary	DA % of Salary
+<5000	10	5	15
+<10000	15	10	20
+<15000	20	15	25
+<20000	25	20	30
+>=20000	30	25	35
+GrossSalary = Salary + HRA + TA + DA.
+Calculate PF, TDS and Net salary in a function named “CalculateSalary()”
+PF = 10 % of GrossSalary. TDS = 18 % of GrossSalary.
+NetSalary = GrossSalary – (PF + TDS).
+ Write a console application Employee Management which allow HR staff member to register newly joined employee with EmpNo, EmpName and Salary. Display gross salary of employee on console. LitwareLib class Library will be used in Test console application for creating objects and invoking functionality of Employee class. Use Exception Handling mechanism wherever necessary.
+
+
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeManagementSystem
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter Employee Id : ");
+            int EmpId=int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Employee Name : ");
+            string name=Console.ReadLine();
+            Console.WriteLine("Enter Employee salary : ");
+            double salary=double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Employee Type M for Manager And E for Manager Executive : ");
+            char EmpType = char.Parse(Console.ReadLine()); 
+           if(EmpType=='M' ||EmpType=='m')
+            {
+               // Manager manager=new Manager(EmpId,name,salary);
+                //manager.CalculateSalary();
+                MPrintable mPrintable=new MPrintable(EmpId, name, salary);
+                mPrintable.CalculateSalary();
+                mPrintable.Display_Employee_Details();
+            }
+           else
+            {
+                Console.WriteLine("Enter total travel in KiloMeter");
+                int km = int.Parse(Console.ReadLine());
+                //MarketingExecutive ME = new MarketingExecutive(km,EmpId, name, salary);
+                //ME.CalculateSalary();
+                MEPrintable mEPrintable = new MEPrintable(km, EmpId, name, salary);
+                mEPrintable.CalculateSalary();
+                mEPrintable.Display_Employee_Details();
+            }
+           Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeManagementSystem
+{
+    public abstract class Employee
+    {
+        public int EmpId { get; set; }
+        public string EmpName { get; set; }
+        public double salary { get; set; }
+        public double GrossSalary { get; set; }   
+       /*public  Employee(int empId, string empName, double salary)
+        {
+            EmpId = empId;
+            EmpName = empName;
+            this.salary = salary;
+           
+        }*/
+
+        public abstract void CalculateSalary();
+
+    }
+}
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeManagementSystem
+{
+    internal interface IPrintable
+    {
+       void Display_Employee_Details();
+
+    }
+}
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeManagementSystem
+{
+    internal class Manager:Employee
+    {
+        public double Petrol { get; set; }
+        public double Food { get; set; }
+        public double Other { get; set; }
+
+        public double NetSalary { get; set; }
+       public Manager()
+        {
+
+        }
+        public Manager(int  EmpId, string name, double salary)
+        {
+            this.EmpId = EmpId;
+            EmpName = name;
+            this.salary = salary;
+        }
+
+        public override void CalculateSalary()
+        {
+
+            Petrol = (salary * 8) / 100;
+            Food = (salary * 13) / 100;
+            Other = (salary * 3) / 100;
+
+            GrossSalary = salary + Petrol + Food + Other;
+            NetSalary =GrossSalary ;
+        }
+
+
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeManagementSystem
+{
+    internal class MarketingExecutive : Employee
+    {
+        private int kilometer_travel { get; set; }
+
+        private int tour_allowance { get; set; }
+
+        private const int telephone_allowance= 1000;
+        
+        public MarketingExecutive()
+        { }
+
+        public MarketingExecutive(int km, int EmpId, string name, double salary)
+        {
+            this.EmpId = EmpId;
+            EmpName = name;
+            this.salary = salary;
+            kilometer_travel = km;
+            tour_allowance= km*5;
+        }
+
+        public override void CalculateSalary()
+        {
+            GrossSalary = salary+ kilometer_travel+tour_allowance+telephone_allowance;
+        }
+    }
+}
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeManagementSystem
+{
+    internal class MEPrintable : MarketingExecutive, IPrintable
+    {
+        public MEPrintable(int km,int id, string name, double salary) : base(km,id, name, salary)
+        { }
+        public void Display_Employee_Details()
+        {
+            Console.WriteLine("Employee Id : {0}", EmpId);
+            Console.WriteLine("Employee Name : {0}", EmpName);
+            Console.WriteLine("Employee Salary : {0}", salary);
+            Console.WriteLine("Employee Gross Salary : {0}", GrossSalary);
+
+        }
+    }
+}
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeManagementSystem
+{
+    internal class MPrintable : Manager, IPrintable
+    {
+       public MPrintable(int id, string name, double salary) : base(id, name, salary)
+        { }
+        public void Display_Employee_Details()
+        {
+            Console.WriteLine("Employee Id : {0}", EmpId);
+            Console.WriteLine("Employee Name : {0}", EmpName);
+            Console.WriteLine("Employee Salary : {0}", salary);
+            Console.WriteLine("Employee Gross Salary : {0}", GrossSalary);
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
