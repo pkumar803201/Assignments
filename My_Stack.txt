@@ -1,0 +1,112 @@
+/*  2)	Write a class called MyStack with following members.
+a)	integer array
+b)	integer variable to store top position
+c)	size of the array.
+Implement Push() and Pop() operation. Implement ICloneable interface to perform cloning. Write a client application to perform cloning.
+
+
+ */ 
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Stack
+{
+    internal class Program:ICloneable
+    {
+        static void Main(string[] args)
+        {
+            MyStack st=new MyStack();
+           
+
+            while(true)
+            {
+                Console.WriteLine("Enter your choice : \n1 for push :\n2 for pop :\n3 for exit()");
+                int choice=int.Parse(Console.ReadLine());
+                switch(choice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter number to push : ");
+                        int n=int.Parse(Console.ReadLine());
+                        st.push(n);
+                        break;
+                    case 2:
+                        Console.WriteLine("Poped value is : {0}",st.pop());
+                        break;
+                        case 3:
+                        return;
+                }
+            }
+
+
+            Console.ReadLine();
+
+        }
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Stack
+{
+    internal class MyStack
+    {
+        private int[] arr=new int[100];
+        private int top = -1;
+        private int size;
+
+        public void push(int no)
+        {
+            try
+            {
+                if (top >= 100 )
+                {
+                    throw new StackException("Stack is Overflow");
+
+                }
+                
+                arr[++top] = no;
+                Console.WriteLine("Number is pushed to stack : ");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        public int pop()
+        {
+            int a=-1;
+            try
+            {
+                if(top < 0 )
+                {
+                    throw new StackException("Stack is underFlow"); ;
+                }
+                a = arr[top--];
+                
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+          return a;
+        }
+    }
+}
+
+

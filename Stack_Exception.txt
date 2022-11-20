@@ -1,0 +1,131 @@
+/*  3)	Create a custom exception class named StackException. The Push()and Pop() method should throw object
+ of StackException when the stack is full or empty respectively. */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Stack
+{
+    internal class Program:ICloneable
+    {
+        static void Main(string[] args)
+        {
+            MyStack st=new MyStack();
+           
+
+            while(true)
+            {
+                Console.WriteLine("Enter your choice : \n1 for push :\n2 for pop :\n3 for exit()");
+                int choice=int.Parse(Console.ReadLine());
+                switch(choice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter number to push : ");
+                        int n=int.Parse(Console.ReadLine());
+                        st.push(n);
+                        break;
+                    case 2:
+                        Console.WriteLine("Poped value is : {0}",st.pop());
+                        break;
+                        case 3:
+                        return;
+                }
+            }
+
+
+            Console.ReadLine();
+
+        }
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Stack
+{
+    internal class MyStack
+    {
+        private int[] arr=new int[100];
+        private int top = -1;
+        private int size;
+
+        public void push(int no)
+        {
+            try
+            {
+                if (top >= 100 )
+                {
+                    throw new StackException("Stack is Overflow");
+
+                }
+                
+                arr[++top] = no;
+                Console.WriteLine("Number is pushed to stack : ");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+        public int pop()
+        {
+            int a=-1;
+            try
+            {
+                if(top < 0 )
+                {
+                    throw new StackException("Stack is underFlow"); ;
+                }
+                a = arr[top--];
+                
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+          return a;
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Stack
+{
+    public class StackException:Exception
+    {
+        public StackException()
+        {
+
+        }
+        public StackException(string message):base(message)
+        {
+
+        }
+        public StackException(string message,Exception innerException):base(message,innerException)
+        {
+
+        }
+    }
+}
+
