@@ -1,0 +1,245 @@
+/* 1)	Create following types of arrays
+a)	Integer
+b)	String
+Use System.Array class to perform following operations on them
+Copy, Sort, Clear, Reverse
+Accept input from user through Console.
+ */
+
+using System;
+//using System.Array;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Arrays
+{
+    internal class Program
+    {
+       static void ArrayCopy(int[] arr)
+        {
+
+            int[] iarr2 = new int[arr.Length];
+            Array.Copy(arr, iarr2, arr.Length);
+
+            foreach (var i in arr)
+                Console.Write(i + " ");
+            Console.WriteLine();
+            Console.WriteLine("after coping array data ");
+            foreach (var i in iarr2)
+                Console.Write(i + " ");
+        }
+        static void ArraySort(int[] arr)
+        {
+
+            
+           
+
+            foreach (var i in arr)
+                Console.Write(i + " ");
+            Console.WriteLine();
+            Array.Sort(arr);
+            Console.WriteLine("After Sorting array data ");
+            foreach (var i in arr)
+                Console.Write(i + " ");
+        }
+        static void ArrayClear(int[] arr)
+        {
+            Console.WriteLine("To clear Array data|");
+            Console.WriteLine("Enter start index | :");
+            int si=int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter data count to be clear| :");
+            int el=int.Parse(Console.ReadLine());
+            foreach (var i in arr)
+                Console.Write(i + " ");
+            Array.Clear(arr,si,el);
+
+            Console.WriteLine();
+            Console.WriteLine("After Clearing array data ");
+            foreach (var i in arr)
+                Console.Write(i + " ");
+        }
+
+        static void ArrayReverse(int[] arr)
+        {
+            Console.WriteLine("To reverse Array data|");
+            Console.WriteLine("Enter start index | :");
+            int si = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter data count to be reverse| :");
+            int el = int.Parse(Console.ReadLine());
+            foreach (var i in arr)
+                Console.Write(i + " ");
+            Array.Reverse(arr, si, el);
+
+            Console.WriteLine();
+            Console.WriteLine("After Clearing array data ");
+            foreach (var i in arr)
+                Console.Write(i + " ");
+        }
+        static void Main(string[] args)
+        {
+
+            while(true)
+            {
+                Console.WriteLine("Enter size of Integer array :");
+                int length = int.Parse(Console.ReadLine());
+                int[] iarr = new int[length];
+                for (int i = 0; i < length; i++)
+                {
+                    Console.Write("Enter Array Data: ");
+                    iarr[i] = int.Parse(Console.ReadLine());
+                }
+
+                Console.WriteLine("\nEnter choice 1 for Copy Array Data:|\n2 for sort Array Data:" +
+                    "|\n3 for Clear Array Data:|\n4 for reverse Array Data: |\n5 for Exit :\n");
+                int choice=int.Parse(Console.ReadLine());
+
+                switch(choice)
+                {
+                    case 1:
+                        ArrayCopy(iarr);
+                        break;
+                    case 2:
+                        ArraySort(iarr);
+                        break;
+                    case 3:
+                        ArrayClear(iarr);
+                        break;
+                    case 4:
+                        ArrayReverse(iarr);
+                        break;
+                    case 5:
+                        return;
+                }
+
+
+            }
+
+
+            Console.ReadLine();
+
+        }
+    }
+}
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StingArray
+{
+    internal class Program
+    {
+        static void ArrayCopy(string[] arr)
+        {
+
+            string[] iarr2 = new string[arr.Length];
+            Array.Copy(arr, iarr2, arr.Length);
+
+            foreach (var i in arr)
+                Console.Write(i + " ");
+            Console.WriteLine();
+            Console.WriteLine("after coping array data ");
+            foreach (var i in iarr2)
+                Console.Write(i + " ");
+        }
+        static void ArraySort(string[] arr)
+        {
+
+
+            
+
+            foreach (var i in arr)
+                Console.Write(i + " ");
+            Console.WriteLine();
+            Array.Sort(arr);
+            Console.WriteLine("After Sorting array data ");
+            foreach (var i in arr)
+                Console.Write(i + " ");
+        }
+        static void ArrayClear(string[] arr)
+        {
+            Console.WriteLine("To clear Array data|");
+            Console.WriteLine("Enter start index | :");
+            int si = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter data count to be clear| :");
+            int el = int.Parse(Console.ReadLine());
+            foreach (var i in arr)
+                Console.Write(i + " ");
+            Array.Clear(arr, si, el);
+
+            Console.WriteLine();
+            Console.WriteLine("After Clearing array data ");
+            foreach (var i in arr)
+                Console.Write(i + " ");
+        }
+
+        static void ArrayReverse(string[] arr)
+        {
+            Console.WriteLine("To reverse Array data|");
+            Console.WriteLine("Enter start index | :");
+            int si = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter data count to be reverse| :");
+            int el = int.Parse(Console.ReadLine());
+            foreach (var i in arr)
+                Console.Write(i + " ");
+            Array.Reverse(arr, si, el);
+
+            Console.WriteLine();
+            Console.WriteLine("After Clearing array data ");
+            foreach (var i in arr)
+                Console.Write(i + " ");
+        }
+        static void Main(string[] args)
+        {
+
+            while (true)
+            {
+                Console.WriteLine("\nEnter size of string array :");
+                int length = int.Parse(Console.ReadLine());
+                string[] iarr = new string[length];
+                for (int i = 0; i < length; i++)
+                {
+                    Console.Write("Enter string Array Data: ");
+                    iarr[i] = Console.ReadLine();
+                }
+
+                Console.WriteLine("Enter choice 1 for Copy Array Data:|\n2 for sort Array Data:" +
+                    "|\n3 for Clear Array Data:|\n4 for reverse Array Data:| \n5 for Exit:\n");
+                int choice = int.Parse(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        ArrayCopy(iarr);
+                        break;
+                    case 2:
+                        ArraySort(iarr);
+                        break;
+                    case 3:
+                        ArrayClear(iarr);
+                        break;
+                    case 4:
+                        ArrayReverse(iarr);
+                        break;
+                    case 5:
+                        return;
+                }
+
+
+            }
+
+
+            Console.ReadLine();
+
+        }
+    }
+}

@@ -1,0 +1,60 @@
+/* 3) Write a console based program to create a linked list of Employee objects using the generic class List<Employee>.Perform following operations on the list:
+a.	Add a new employee
+b.	Display the list of employees.
+c.	Total number of employees in the list
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EmployeeLinkList
+{
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string EmpName { get; set; }
+        public double salary { get; set; }
+        
+        public Employee(int id, string empName, double salary)
+        {
+            Console.WriteLine(id +" "+ empName + " " + salary);
+            Id = id;
+            EmpName = empName;
+            this.salary = salary;
+        }
+    }
+    internal class Program
+    {
+        public static void AddNewEmployee(List<Employee> list)
+        {
+            
+            Console.WriteLine("Enter Employee Id: ");
+            int id=int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Employee Name: ");
+            string name=Console.ReadLine();
+            Console.WriteLine("Enter Employee salary: ");
+            double salary=double.Parse(Console.ReadLine());
+            list.Add(new Employee(id,name,salary));
+        }
+        public static void DisplayEmployeeDetails(List<Employee> list)
+        {
+            foreach(var emp in list)
+            {
+                Console.WriteLine("Employee Id: "+emp.Id);
+                Console.WriteLine("Employee Name :",emp.EmpName);
+                Console.WriteLine("Employee salary :",emp.salary);
+            }
+        }
+        static void Main(string[] args)
+        {
+            List<Employee> list = new List<Employee>();
+            AddNewEmployee(list);
+            DisplayEmployeeDetails(list);
+
+            Console.ReadLine();
+        }
+    }
+}

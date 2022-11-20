@@ -1,0 +1,49 @@
+/* 2)	Use collection class such as ArrayList to hold more than one employee objects in Employee Management application.
+ Display all Employee details which are stored in collection. */
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace CsharpAssignment_5
+{
+class EmployeeData
+{
+public int EmpId { get; set; }
+public string EmpName { get; set; }
+public int EmpAge { get; set; }
+public decimal EmpSalary { get; set; }
+public EmployeeData(int empid, string empname, int empage, decimal empsal)
+{
+EmpId = empid;
+EmpName = empname;
+EmpAge = empage;
+EmpSalary = empsal;
+}
+}
+class Program2
+{
+public static void Main(string[] args)
+{
+ArrayList Emp = new ArrayList();
+EmployeeData emp1 = new EmployeeData(6978, "ABC", 30, 35000);
+EmployeeData emp2 = new EmployeeData(7543, "PQR", 27, 25000);
+EmployeeData emp3 = new EmployeeData(8976, "XYZ", 24, 20000);
+Emp.Add(emp1);
+Emp.Add(emp2);
+Emp.Add(emp3);
+foreach (EmployeeData i in Emp)
+{
+Console.WriteLine("Employee Id : " + i.EmpId);
+Console.WriteLine("Employee Name : " + i.EmpName);
+Console.WriteLine("Employee Age : " + i.EmpAge);
+Console.WriteLine("Employee Salary : " + i.EmpSalary);
+Console.WriteLine();
+}
+Console.ReadLine();
+Console.ReadKey();
+}
+}
+}
